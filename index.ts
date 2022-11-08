@@ -6,7 +6,7 @@ const IntentFlags = Discord.Intents.FLAGS;
 import * as config from "./config.json";
 import * as mongoose from "mongoose";
 import * as fs from "fs";
-import { randElem, fetchCardInfo, getUserData, coinEmoji, toMS, getProperty } from "./utils";
+import { randElem, getUserData, coinEmoji, toMS, getProperty } from "./utils";
 import { Player } from "discord-player";
 import shopItems from "./shopItems";
 // import { UserModel } from "./models/User";
@@ -26,20 +26,14 @@ mongoose.connect("mongodb://localhost/nutbot", () => console.log("Connected to d
 const dev = process.env.NODE_ENV !== "production";
 
 let globalData: GlobalData = {
-  cards: [],
   config: config,
   musicPlayer: new Player(client),
   cooldowns: {
     nut: new Set()
   },
 	commands: new Map(),
-	cardCommands: new Map(),
 	dev
 };
-fetchCardInfo().then(data => {
-	globalData.cards = data;
-	// console.table(data);
-});
 
 // require("./deploy-cmds");
 import { deployCommands } from "./deploy-cmds";
@@ -55,13 +49,6 @@ fs.readdirSync(join(__dirname, "commands"))
 		globalData.commands.set(cmd.name, cmd);
   });
 // setTimeout(() => console.table(globalData.commands.values()), 100)
-// Card commands
-fs.readdirSync(join(__dirname, "commands/cards"))
-  .filter(str => str.endsWith(dev ? ".ts" : ".js"))
-  .forEach(async file => {
-    const cmd: Command = (await import(`./commands/cards/${file}`)).default;
-    globalData.cardCommands.set(cmd.name, cmd);
-  });
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);

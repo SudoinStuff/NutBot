@@ -16,7 +16,6 @@ export function deployCommands() {
           .setName("category")
           .setDescription("Help menu category")
           .addChoice("commands", "commands")
-          .addChoice("squeanut", "squeanut")
           .addChoice("admin", "admin")
           .addChoice("music", "music")
       ),
@@ -25,17 +24,6 @@ export function deployCommands() {
       .addStringOption(opt =>
         opt.setName("question").setDescription("The question").setRequired(true)
       ),
-    new SlashCommandBuilder().setName("squeanut").addSubcommand(sub =>
-      sub
-        .setName("index")
-        .setDescription("A list of all the available nutty cards")
-        .addStringOption(opt =>
-          opt
-            .setName("card")
-            .setDescription("Information about all the nutty cards")
-            .setRequired(false)
-        )
-    ),
     new SlashCommandBuilder()
       .setName("play")
       .addStringOption(opt =>

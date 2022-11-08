@@ -2,7 +2,6 @@ command names must match slash commands in deploy-cmds.js
 
 command type must be "general" (default), "music", "admin", or "botAdmin"
 
-
-coins
-	/leaderboard
-	/rps
+need to remove squenuts game
+fix /play /pause /purge /queue /skip /stats /stop /use
+possible dependecy issue across packages

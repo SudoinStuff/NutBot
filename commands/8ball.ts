@@ -34,7 +34,7 @@ export default {
 			"Yes!",
 			"lol no.",
 			"There is a high probability.",
-			"What difference does it makes?",
+			"What difference does it make?",
 			"Not my problem.",
 			"Ask someone else.",
 			"Of course papi! 😉"

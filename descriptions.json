@@ -1,8 +1,6 @@
 {
 	"help": "Information about the bot",
 	"8ball": "Ask anything you wish",
-	"squeanut": "The nuttiest card game",
-	"squeanut index": "A list of all the available nutty cards",
 	"play": "Plays a song in the current voice channel",
 	"nut": "Get your nuts out",
 	"purge": "Mass delete messages in a channel",

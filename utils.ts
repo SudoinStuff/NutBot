@@ -1,7 +1,6 @@
 import { CommandInteraction } from "discord.js";
 import { UserModel } from "./models/User";
 import { readFileSync } from "fs";
-import { Card } from "./types";
 import { GuildModel } from "./models/Guild";
 
 // const shopItemIDs = shopItems.filter(i => !i.nonStorable).map(i => i.id);
@@ -20,18 +19,6 @@ export function randElem<T>(arr: T[]): T {
 export function interactionHasPerms(interaction: CommandInteraction, ...permFlags: bigint[]): boolean {
 	let member = interaction.guild.members.cache.get(interaction.user.id);
   return permFlags.every(perm => member.permissions.has(perm));
-}
-
-export async function fetchCardInfo(): Promise<Card[]> {
-	let data: string;
-  // data = await fetch("https://sheetdb.io/api/v1/6qj769b4u2o9q");
-	data = readFileSync("./cardsCache.json", { encoding: "utf-8" });
-	let parsed: any[] = JSON.parse(data);
-	let result: Card[] = parsed.map(c => {
-		["Level", "ATK", "DEF", "Coins", "Total"].forEach(prop => c[prop] = parseInt(c[prop]));
-		return c;
-	});
-	return result;
 }
 
 export async function getUserData(id: string) {

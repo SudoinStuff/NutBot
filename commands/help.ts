@@ -17,16 +17,11 @@ const command: Command = {
 					value: "`/help commands`",
 					inline: false
 				},
-				{
-					name: "Squeanut",
-					value: "`/help squeanut`",
-					inline: true
-				},
 				{ name: "Admin", value: "`/help admin`", inline: true },
 				{ name: "Music", value: "`/help music`", inline: true }
 			)
 			.setFooter({
-				text: "DM or ping Toasty#2710 if something isn't working"
+				text: "DM or ping Kaid#7340 if something is wrong"
 			});
 
 		const cmdMenu = new Discord.MessageEmbed()
@@ -38,26 +33,6 @@ const command: Command = {
 					.filter(cmd => (!cmd.type || cmd.type === "general") && !cmd.hidden)
 					.map(cmd => `\`${cmd.name}\` — ${descriptions[cmd.name]}`)
 					.sort()
-					.join("\n")
-			);
-
-		const cardsMenu = new Discord.MessageEmbed()
-			.setColor(`#${data.config.color}`)
-			.setTitle("Squeanut Help")
-			.setThumbnail(
-				"https://cdn.discordapp.com/attachments/743963204421681283/859197055363448842/ntermission_geef.gif"
-			)
-			.setDescription("Squeanut is a nutty card game (idk what to put here).")
-			.addField(
-				"Commands",
-				[...data.cardCommands.values()]
-					.sort()
-					.map(
-						cmd =>
-							`\`/squeanut ${cmd.name}\` — ${
-								descriptions[`squeanut ${cmd.name}`]
-							}`
-					)
 					.join("\n")
 			);
 
@@ -92,9 +67,6 @@ const command: Command = {
 		switch (helpType) {
 			case "commands":
 				embed = cmdMenu;
-				break;
-			case "squeanut":
-				embed = cardsMenu;
 				break;
 			case "admin":
 				embed = adminMenu;

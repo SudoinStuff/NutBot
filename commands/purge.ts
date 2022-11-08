@@ -7,7 +7,7 @@ const command: Command = {
 	type: "admin",
 
 	execute: async (interaction, data) => {
-		if (!interaction.inGuild()) return interaction.reply("You can't purge a dm");
+		if (interaction.inGuild() == null) return interaction.reply("You can't purge a dm");
 		if (!interactionHasPerms(interaction, Permissions.FLAGS.MANAGE_MESSAGES))
 			return interaction.reply(
 				"You must have the manage message permission to mass delete. smh"

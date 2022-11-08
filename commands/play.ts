@@ -8,7 +8,7 @@ const command: Command = {
 	type: "music",
 
 	execute: async (interaction: CommandInteraction, data: GlobalData) => {
-		if (!interaction.inGuild())
+		if (interaction.inGuild() == null)
 			return await interaction.reply(
 				"Playing music only works in servers man. Idk what ur doing."
 			);
